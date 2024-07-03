@@ -1,7 +1,7 @@
 from typing import Final
 import os
 from dotenv import load_dotenv
-from discord import Intents, Client, Message, Poll
+from discord import Intents, Client, Message, Poll, PollAnswer, User
 from discord.ext import tasks
 from responses import get_response
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -70,6 +70,18 @@ async def on_message(message: Message) -> None:
 @tasks.loop(hours=1)
 async def availability_role_update():
     pass
+
+
+# async def read_poll_answers():
+#     # find poll
+#     poll: Poll = something
+#     current_answer: PollAnswer = poll.answers[day_of_week]
+#
+#     voters: list[User] = [voter async for voter in current_answer.voters()]
+#
+#     for voter in voters:
+#         # assign available role (remove from all in start of function)
+#         pass
 
 
 async def send_sunday_message():
