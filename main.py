@@ -2,17 +2,22 @@ from typing import Final
 import os
 from dotenv import load_dotenv
 from discord import Intents, Client, Message, Poll
+from discord.ext import tasks
 from responses import get_response
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.cron import CronTrigger
 
 # get token
 load_dotenv()
 TOKEN: Final[str] = os.getenv('DISCORD_TOKEN')
 MENTION: Final[str] = os.getenv('BOT_MENTION')
+POLL_CHANNEL: Final[str] = os.getenv('AVAILABILITY_POLL_CHANNEL')
 
 # bot setup
 intents: Intents = Intents.default()
 # intents.message_content = True # on = have access to all messages, off = only mentions
 client: Client = Client(intents=intents)
+scheduler: AsyncIOScheduler = AsyncIOScheduler()
 
 
 # respond to messages
@@ -60,6 +65,22 @@ async def on_message(message: Message) -> None:
     print(f'[{channel}] {username}: "{user_message}" ')
 
     await send_message(message, user_message)
+
+
+@tasks.loop(hours=1)
+async def availability_role_update():
+    pass
+
+
+async def send_sunday_message():
+    channel = client.get_channel(int(POLL_CHANNEL))
+    if channel:
+        pass
+        # create polls
+
+
+# Schedule run to every Sunday at midnight
+scheduler.add_job(send_sunday_message, CronTrigger(day_of_week='sun', hour=0, minute=0))
 
 
 # main, logon
