@@ -11,11 +11,11 @@ from apscheduler.triggers.cron import CronTrigger
 load_dotenv()
 TOKEN: Final[str] = os.getenv('DISCORD_TOKEN')
 MENTION: Final[str] = os.getenv('BOT_MENTION')
-POLL_CHANNEL: Final[str] = os.getenv('AVAILABILITY_POLL_CHANNEL')
+POLL_CHANNEL: Final[int] = int(os.getenv('AVAILABILITY_POLL_CHANNEL'))
 
 # bot setup
 intents: Intents = Intents.default()
-# intents.message_content = True # on = have access to all messages, off = only mentions
+intents.message_content = True  # on = have access to all messages, off = only mentions
 client: Client = Client(intents=intents)
 scheduler: AsyncIOScheduler = AsyncIOScheduler()
 
@@ -49,6 +49,10 @@ async def send_message(message: Message, user_message: str) -> None:
 @client.event
 async def on_ready() -> None:
     print(f'Successfully logged in as {client.user}')
+    channel: Message.channel = client.get_channel(POLL_CHANNEL)
+    messages: list[Message] = [message async for message in channel.history(limit=100)]
+    for message in messages:
+        print(message.poll)
 
 
 # read messages
@@ -85,7 +89,7 @@ async def availability_role_update():
 
 
 async def send_sunday_message():
-    channel = client.get_channel(int(POLL_CHANNEL))
+    channel: Message.channel = client.get_channel(POLL_CHANNEL)
     if channel:
         pass
         # create polls
@@ -98,7 +102,6 @@ scheduler.add_job(send_sunday_message, CronTrigger(day_of_week='sun', hour=0, mi
 # main, logon
 def main() -> None:
     client.run(token=TOKEN)
-
 
 if __name__ == "__main__":
     main()
