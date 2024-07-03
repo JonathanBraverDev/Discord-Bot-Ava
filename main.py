@@ -49,10 +49,6 @@ async def send_message(message: Message, user_message: str) -> None:
 @client.event
 async def on_ready() -> None:
     print(f'Successfully logged in as {client.user}')
-    channel: Message.channel = client.get_channel(POLL_CHANNEL)
-    messages: list[Message] = [message async for message in channel.history(limit=100)]
-    for message in messages:
-        print(message.poll)
 
 
 # read messages
@@ -60,6 +56,10 @@ async def on_ready() -> None:
 async def on_message(message: Message) -> None:
     # stop the psycho from talking to itself
     if message.author == client.user:
+        return
+
+    # ignore non-mentions
+    if client.user not in message.mentions:
         return
 
     username: str = str(message.author)
@@ -74,6 +74,11 @@ async def on_message(message: Message) -> None:
 @tasks.loop(hours=1)
 async def availability_role_update():
     pass
+    # code for finding polls
+    # channel: Message.channel = client.get_channel(POLL_CHANNEL)
+    # messages: list[Message] = [message async for message in channel.history(limit=100)]
+    # for message in messages:
+    #     print(message.poll)
 
 
 # async def read_poll_answers():

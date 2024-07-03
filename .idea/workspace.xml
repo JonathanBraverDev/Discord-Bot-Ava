@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c35029f-3080-46b6-9725-faff42af78ba" name="Changes" comment="Add placeholders for intended functionality">
-      <change beforePath="$PROJECT_DIR$/.idea/DiscordBotAva.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DiscordBotAva.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0c35029f-3080-46b6-9725-faff42af78ba" name="Changes" comment="Added ability to find polls upon lunch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -132,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719981287661</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added ability to find polls upon lunch">
+      <option name="closed" value="true" />
+      <created>1720029964299</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720029964299</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +168,7 @@
     <MESSAGE value="Initial&#10;simple discord bot with D&amp;D dice rolls" />
     <MESSAGE value="Added gitignore&#10;Added some type hints" />
     <MESSAGE value="Add placeholders for intended functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add placeholders for intended functionality" />
+    <MESSAGE value="Added ability to find polls upon lunch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ability to find polls upon lunch" />
   </component>
 </project>
