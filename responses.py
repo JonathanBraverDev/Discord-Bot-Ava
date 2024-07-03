@@ -1,4 +1,4 @@
-from random import choice, randint
+from random import randint
 import re
 
 
@@ -35,5 +35,5 @@ def handle_dice_rolls(user_message: str) -> str:
     return "\n".join(results)
 
 
-def roll_dice(number, sides):
+def roll_dice(number: int, sides: int) -> list[int]:
     return [randint(1, sides) for _ in range(number)]
